@@ -4,6 +4,7 @@ import { ApolloDriver } from '@nestjs/apollo';
 import { join } from 'path';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { SetlistModule } from './setlist/setlist.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { AppService } from './app.service';
       sortSchema: true,
       driver: ApolloDriver,
     }),
+    SetlistModule,
   ],
   controllers: [AppController],
   providers: [AppService],
