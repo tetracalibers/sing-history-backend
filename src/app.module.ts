@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
-import { ApolloDriver } from '@nestjs/apollo';
+import { MercuriusDriver, MercuriusDriverConfig } from '@nestjs/mercurius';
 import { join } from 'path';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -8,12 +8,11 @@ import { SetlistModule } from './setlist/setlist.module';
 
 @Module({
   imports: [
-    GraphQLModule.forRoot({
-      // schemaファイルのパスを指定
-      autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
-      // 生成されたschemaを自動でsortされるためのオプションをオンにする
+    GraphQLModule.forRoot<MercuriusDriverConfig>({
+      driver: MercuriusDriver,
+      graphiql: process.env.NODE_ENV !== 'production',
+      autoSchemaFile: join(process.cwd(), 'src/generated/schema.gql'),
       sortSchema: true,
-      driver: ApolloDriver,
     }),
     SetlistModule,
   ],
