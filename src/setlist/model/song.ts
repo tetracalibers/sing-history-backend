@@ -28,9 +28,6 @@ export class Song {
   @Field((type) => Int, { nullable: true })
   score?: number;
 
-  @Field({ defaultValue: [] })
-  problems: string[];
-
   @Field({ nullable: true })
   memo?: string;
 
