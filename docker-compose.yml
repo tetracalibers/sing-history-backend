@@ -2,17 +2,15 @@ version: '3'
 
 services:
   db:
-    image: mysql:8.0
+    image: postgres:14
     restart: always
-    command: mysqld --default-authentication-plugin=mysql_native_password
     environment:
-      - MYSQL_DATABASE=${DB_NAME}
-      - MYSQL_USER=${DB_USER}
-      - MYSQL_PASSWORD=${DB_PASS}
-      - MYSQL_ROOT_PASSWORD=${DB_PASS}
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASS}
       - TZ=${TZ}
     ports:
-      - ${DB_PORT}:3306
+      - ${DB_PORT}:5432
     volumes:
-      - ./docker/mysql/data:/var/lib/mysql
-      - ./docker/mysql/initdb:/docker-entrypoint-initdb.d
+      - ./docker/postgres/data:/var/lib/mysql
+      - ./docker/postgres/initdb:/docker-entrypoint-initdb.d
