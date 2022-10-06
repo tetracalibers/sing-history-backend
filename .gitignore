@@ -2,6 +2,7 @@
 docker
 .env
 mock
+generated
 
 # compiled output
 /dist

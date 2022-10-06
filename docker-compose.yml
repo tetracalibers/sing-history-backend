@@ -4,14 +4,15 @@ services:
   db:
     image: mysql:8.0
     restart: always
-    command: mysqld --character-set-server=utf8mb4 --collection-server=utf8mb4_unicode_ci --default-authentication-plugin=mysql_native_password
+    command: mysqld --default-authentication-plugin=mysql_native_password
     environment:
-      MYSQL_USER: tetcali
-      MYSQL_PASSWORD: passw0rd
-      MYSQL_DATABASE: singhis
-      TZ: Asia/Tokyo
+      - MYSQL_DATABASE=${DB_NAME}
+      - MYSQL_USER=${DB_USER}
+      - MYSQL_PASSWORD=${DB_PASS}
+      - MYSQL_ROOT_PASSWORD=${DB_PASS}
+      - TZ=${TZ}
     ports:
-      - '5432:5432'
+      - ${DB_PORT}:3306
     volumes:
-      - ./docker/mysql/data:/var/lib/mysql/data
+      - ./docker/mysql/data:/var/lib/mysql
       - ./docker/mysql/initdb:/docker-entrypoint-initdb.d

@@ -3,8 +3,11 @@ import { Max, Min, IsOptional } from 'class-validator';
 
 @InputType()
 export class NewSongInput {
+  @Field((type) => Int)
+  artistId: number;
+
   @Field((type) => [String])
-  artistId: string;
+  artistName: string;
 
   @Field((type) => [String])
   songName: string;
@@ -12,6 +15,9 @@ export class NewSongInput {
   @Field((type) => [String], { nullable: true })
   @IsOptional()
   jacketUrl?: string;
+
+  @Field((type) => [String])
+  singDate: string;
 
   @Field((type) => Int, { defaultValue: 0 })
   @Min(-6)
