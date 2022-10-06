@@ -6,17 +6,17 @@ export class NewSongInput {
   @Field((type) => Int)
   artistId: number;
 
-  @Field((type) => [String])
+  @Field((type) => String)
   artistName: string;
 
-  @Field((type) => [String])
+  @Field((type) => String)
   songName: string;
 
-  @Field((type) => [String], { nullable: true })
+  @Field((type) => String, { nullable: true })
   @IsOptional()
   jacketUrl?: string;
 
-  @Field((type) => [String])
+  @Field((type) => String)
   singDate: string;
 
   @Field((type) => Int, { defaultValue: 0 })
@@ -35,7 +35,7 @@ export class NewSongInput {
   @Max(100)
   score?: number;
 
-  @Field((type) => [String], { nullable: true })
+  @Field((type) => String, { nullable: true })
   @IsOptional()
   memo?: string;
 }

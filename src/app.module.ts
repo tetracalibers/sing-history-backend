@@ -6,6 +6,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { SetlistModule } from './setlist/setlist.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { Song } from './setlist/model/song';
 
 @Module({
   imports: [
@@ -22,7 +23,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       username: 'tetcali',
       password: 'passw0rd',
       database: 'singhis',
-      entities: [],
+      entities: [Song],
       synchronize: true,
     }),
     SetlistModule,

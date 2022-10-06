@@ -14,7 +14,7 @@ export class SetlistResolver {
   }
 
   @Query((returns) => Song)
-  async getSong(@Args({ name: 'id', type: () => Int }) id: string) {
+  async getSong(@Args({ name: 'id', type: () => Int }) id: number) {
     const song = await this.songsService.findOneById(id);
     if (!song) {
       throw new NotFoundException(id);
@@ -28,7 +28,7 @@ export class SetlistResolver {
   }
 
   @Mutation((returns) => Boolean)
-  async removeSong(@Args({ name: 'id', type: () => Int }) id: string) {
+  async removeSong(@Args({ name: 'id', type: () => Int }) id: number) {
     return this.songsService.remove(id);
   }
 }
