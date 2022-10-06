@@ -1,4 +1,5 @@
 import { Resolver } from '@nestjs/graphql';
+import { Song } from './model/song';
 
-@Resolver()
+@Resolver((of) => Song)
 export class SetlistResolver {}
