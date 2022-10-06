@@ -21,7 +21,14 @@ export class SetlistService {
     args: PaginatedSetlistArgs,
   ): Promise<PaginatedSetlist> {
     const defautlLimit = 25;
-    const query = this.songsRepostiory.createQueryBuilder().select();
+
+    const query = this.songsRepostiory
+      .createQueryBuilder()
+      .select()
+      .orderBy({ id: 'ASC' });
+
+    const totalCount = query.getCount();
+
     const beforeCountQuery = query.clone();
     const afterCountQuery = query.clone();
 
@@ -43,8 +50,6 @@ export class SetlistService {
 
     const nodes = await query.getMany();
     const edges = nodes.map((node) => ({ cursor: node.id, node }));
-
-    const totalCount = nodes.length;
 
     const startCursor = nodes[0].id;
     const endCursor = nodes[nodes.length - 1].id;
