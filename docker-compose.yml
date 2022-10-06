@@ -2,15 +2,16 @@ version: '3'
 
 services:
   db:
-    image: postgres:14
+    image: mysql:8.0
     restart: always
+    command: mysqld --character-set-server=utf8mb4 --collection-server=utf8mb4_unicode_ci --default-authentication-plugin=mysql_native_password
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: db
+      MYSQL_USER: tetcali
+      MYSQL_PASSWORD: passw0rd
+      MYSQL_DATABASE: singhis
       TZ: Asia/Tokyo
     ports:
       - '5432:5432'
     volumes:
-      - ./docker/postgresql/data:/var/lib/postgresql/data
-      - ./docker/postgresql/initdb:/docker-entrypoint-initdb.d
+      - ./docker/mysql/data:/var/lib/mysql/data
+      - ./docker/mysql/initdb:/docker-entrypoint-initdb.d

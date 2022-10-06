@@ -1,6 +1,7 @@
 # my
 docker
 .env
+mock
 
 # compiled output
 /dist

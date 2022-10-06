@@ -5,6 +5,7 @@ import { join } from 'path';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { SetlistModule } from './setlist/setlist.module';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
   imports: [
@@ -13,6 +14,16 @@ import { SetlistModule } from './setlist/setlist.module';
       graphiql: process.env.NODE_ENV !== 'production',
       autoSchemaFile: join(process.cwd(), 'src/generated/schema.gql'),
       sortSchema: true,
+    }),
+    TypeOrmModule.forRoot({
+      type: 'mysql',
+      host: 'localhost',
+      port: 5432,
+      username: 'tetcali',
+      password: 'passw0rd',
+      database: 'singhis',
+      entities: [],
+      synchronize: true,
     }),
     SetlistModule,
   ],
