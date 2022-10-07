@@ -17,9 +17,7 @@ export class SetlistService {
     return this.songsRepostiory.find();
   }
 
-  async findPagenatedAll(
-    args: PaginatedSetlistArgs,
-  ): Promise<PaginatedSetlist> {
+  async findAllPerPage(args: PaginatedSetlistArgs): Promise<PaginatedSetlist> {
     const defautlLimit = 25;
 
     const query = this.songsRepostiory

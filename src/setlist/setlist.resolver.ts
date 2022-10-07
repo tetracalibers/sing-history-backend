@@ -19,7 +19,7 @@ export class SetlistResolver {
   setlistPerPage(
     @Args() args: PaginatedSetlistArgs,
   ): Promise<PaginatedSetlist> {
-    return this.setlistService.findPagenatedAll(args);
+    return this.setlistService.findAllPerPage(args);
   }
 
   @Query((returns) => Song)
