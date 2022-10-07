@@ -27,7 +27,7 @@ export class SetlistService {
       .select()
       .orderBy({ id: 'ASC' });
 
-    const totalCount = query.getCount();
+    const totalCount = await query.getCount();
 
     const beforeCountQuery = query.clone();
     const afterCountQuery = query.clone();
@@ -43,9 +43,10 @@ export class SetlistService {
     } else if (args.first) {
       // 最初のページをリクエストされた場合
       query.take(args.first);
-    } else {
-      // エラー
-      return {};
+    } else if (args.last) {
+      // 最後のページをリクエストされた場合（多分使わない）
+      const maxIdRecord = await query.clone().orderBy({ id: 'DESC' }).getOne();
+      query.where({ id: MoreThan(maxIdRecord.id - args.last) });
     }
 
     const nodes = await query.getMany();
